@@ -5,3 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .para {
   color:red;
 }
+
+.heading {
+ color: black;   
+}
