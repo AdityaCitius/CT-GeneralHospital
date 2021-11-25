@@ -1,0 +1,74 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <a routerLink="/doctors/my-profile">Employee Details</a> /
+      <a routerLink="/doctors/registration">New Registration</a>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card>
+      <form class="example-form">
+        <div class="row">
+          <div class="col-md-3">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Title</mat-label>
+              <input matInput placeholder="Ex. doctor" value="" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="Ex. Rohit" value="" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Ex. Sharma" value="" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Email Address</mat-label>
+              <input
+                type="email"
+                matInput
+                placeholder="Ex. rohitsharma@gmail.com"
+                value=""
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <mat-form-field appearance="fill">
+              <mat-label>Date Of Birth</mat-label>
+              <input matInput [matDatepicker]="picker" />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Employee Id</mat-label>
+              <input type="number" matInput placeholder="Ex. 13262" value="" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-radio-group aria-label="Select an option">
+              <mat-label>Role: </mat-label><br />
+              <mat-radio-button value="physician">Physician</mat-radio-button>
+              <mat-radio-button value="nurse">Nurse</mat-radio-button>
+              <mat-radio-button value="admin">Admin</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </form>
+    </mat-card>
+    
+  </mat-card-content>
+</mat-card>

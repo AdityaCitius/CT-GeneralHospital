@@ -1,0 +1,181 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div
+            class="card shadow-2-strong card-registration"
+            style="border-radius: 15px"
+          >
+            <div class="card-body">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Patient Registration</h3>
+              <form [formGroup]="form">
+                <div class="row">
+                  <div class="col-md-4 mb-4 d-flex align-items-center">
+                    <h4 class="mb-2 pb-1">Title: &nbsp;&nbsp;&nbsp;&nbsp;</h4>
+  
+                    <mat-radio-group
+                      formControlName="title"
+                      aria-label="Select an option"
+                    >
+                      <mat-radio-button
+                        *ngFor="let option of options"
+                        [value]="option"
+                        >{{ option }}</mat-radio-button
+                      >
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <mat-form-field
+                        class="example-full-width"
+                        appearance="fill"
+                      >
+                        <mat-label>First Name</mat-label>
+                        <input
+                          formControlName="firstName"
+                          matInput
+                          placeholder=""
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <mat-form-field
+                        class="example-full-width"
+                        appearance="fill"
+                      >
+                        <mat-label>Last Name</mat-label>
+                        <input
+                          formControlName="lastName"
+                          matInput
+                          placeholder=""
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+                    <div class="form-outline">
+                      <mat-form-field
+                        class="example-full-width"
+                        appearance="fill"
+                      >
+                        <mat-label>Email</mat-label>
+                        <input formControlName="email" matInput placeholder="" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-4 pb-2">
+                    <div class="form-outline datepicker w-100">
+                      <mat-form-field
+                        class="example-full-width"
+                        appearance="fill"
+                      >
+                        <mat-label>Birthday</mat-label>
+                        <input
+                          formControlName="dob"
+                          type="date"
+                          matInput
+                          placeholder=""
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-4 mb-4 pb-2">
+                    <div class="form-outline">
+                      <mat-form-field
+                        class="example-full-width"
+                        appearance="fill"
+                      >
+                        <mat-label>Contact Number</mat-label>
+                        <input
+                          formControlName="contactNumber"
+                          type="tel"
+                          matInput
+                          placeholder=""
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-outline">
+                      <mat-form-field
+                        class="example-full-width"
+                        appearance="fill"
+                      >
+                        <mat-label>Password</mat-label>
+                        <input
+                          formControlName="password"
+                          type="password"
+                          matInput
+                          placeholder=""
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md">
+                    <div class="form-outline">
+                      <mat-form-field
+                        class="example-full-width"
+                        appearance="fill"
+                      >
+                        <mat-label>Confirm Password</mat-label>
+                        <input
+                          formControlName="confirmPassword"
+                          type="password"
+                          matInput
+                          placeholder=""
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row mt10">
+                  <div class="col-md-4 col-md-offset-4 mt10">
+                    <button
+                    [disabled]="form.invalid"
+                      class="btn btn-primary btn-block"
+                      type="submit"
+                      value="Submit"
+                      (click)="onSubmit()"
+                    >Submit</button>
+                  </div>
+                  <div class="col-md-4 mt10">
+                    <button
+                      class="btn btn-danger btn-block"
+                      type="Clear"
+                      value="Clear"
+                      (click)="onClear()"
+                    >Clear</button>
+                  </div>
+                  <div class="col-md-4 mt10">
+                    <button
+                      class="btn btn-danger btn-block"
+                      type="cancel"
+                      value="Cancel"
+                      routerLink="/login"
+                    >Cancel</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <mat-card>
+    
+  </mat-card>

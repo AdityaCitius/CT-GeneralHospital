@@ -1,0 +1,73 @@
+.mt10 {
+
+  margin-top: 10px!important
+
+  }
+
+  .form-check-inline {
+
+  margin-bottom: 12px;
+
+  }
+
+  .gradient-custom {
+
+ 
+
+  background: #c3dfe4;
+
+ 
+
+  }
+
+  .card {
+
+  background: #eaeaea;
+
+  }
+
+ 
+
+  .card-registration .select-input.form-control[readonly]:not([disabled]) {
+
+  font-size: 1rem;
+
+  line-height: 2.15;
+
+  padding-left: .75em;
+
+  padding-right: .75em;
+
+  }
+
+  .card-registration .select-arrow {
+
+  top: 13px;
+
+  }
+
+
+
+  .mat-radio-button ~ .mat-radio-button {
+
+    margin-left: 14px;
+
+  }
+
+.example-form {
+
+    min-width: 150px;
+
+    max-width: 500px;
+
+    width: 90%;
+
+  }
+
+ 
+
+  .example-full-width {
+
+    width: 100%;
+
+  }
