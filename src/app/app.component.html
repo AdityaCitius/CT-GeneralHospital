@@ -1,5 +1,5 @@
 
-<mat-drawer-container class="example-container" autosize style="height: 100%" *ngIf="headerfloatflag">
+<mat-drawer-container class="example-container" autosize style="height: 100%" *ngIf="authService.isUserLoggedIn()">
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <h1>CT General Hospital</h1>
     <mat-accordion>
@@ -37,11 +37,38 @@
       mat-button
       [matMenuTriggerFor]="menu"
     > <mat-icon>face</mat-icon>
-      Username
+      {{authService.getUserLoggedInName()}}
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item><mat-icon>exit_to_app</mat-icon>Logout</button>
-     
+    <mat-menu   #menu="matMenu">
+      <button  *ngIf="authService.isUserLoggedIn()" mat-menu-item (click)="logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+     </mat-menu>
+    
+    <button mat-button style="float: right; padding-top: 6px;"><mat-icon>supervisor_account</mat-icon>About Us</button>
+    <!-- <button type="button" mat-button >
+      Toggv
+    </button>  -->
+  </div>
+  
+  <router-outlet></router-outlet>
+</mat-drawer-container>
+
+  
+ 
+<mat-drawer-container class="example-container" autosize style="height: 100%" *ngIf="!authService.isUserLoggedIn()">
+  
+  <div
+    class="example-sidenav-content"
+    style="background: yellowgreen; height: 47px"
+  >
+    <button
+      style="float: right; padding-top: 6px"
+      mat-button
+      [matMenuTriggerFor]="menu"
+    > <mat-icon>face</mat-icon>
+      Guest
+    </button>
+    <mat-menu   #menu="matMenu">
+      <button   mat-menu-item routerLink="/login"><mat-icon>exit_to_app</mat-icon>Login</button>
     </mat-menu>
     <button mat-button style="float: right; padding-top: 6px;"><mat-icon>supervisor_account</mat-icon>About Us</button>
     <!-- <button type="button" mat-button >
@@ -51,8 +78,3 @@
   
   <router-outlet></router-outlet>
 </mat-drawer-container>
-<div *ngIf="!headerfloatflag">
-  <router-outlet ></router-outlet>
-</div>
-  
- 

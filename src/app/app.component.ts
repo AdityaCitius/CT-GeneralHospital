@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { AuthService } from './Services/auth.service';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -32,16 +34,33 @@ export class AppComponent {
   options : String[] = ["mobile","laptop"];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','percentage'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  constructor(private dialog: MatDialog) {
-  }
+  
   headerfloatflag:boolean = false;
+  constructor(private cd:ChangeDetectorRef,private dialog: MatDialog,public authService:AuthService,private router:Router) {
+    
+   
+  }
+  onNgInit(){
+   this.headerfloatflag=this.authService.isUserLoggedIn();
+   //console.log(this.headerfloatflag);
+  }
    openPopup() {
     const popUp= this.dialog.open(PopUpComponent)
     popUp.afterClosed().subscribe(()=>{
     })
   }
   onSearch(){
-this.dataSource.filter = this.searchStr;
+    this.dataSource.filter = this.searchStr;
     
   }
+  logout()
+  {
+    console.log("logout");
+    this.authService.logout();
+    this.router.navigate(['/login'])
+  }
+//   ngAfterViewChecked(){
+//     //your code to update the model
+//     this.cd.detectChanges();
+//  }
 }

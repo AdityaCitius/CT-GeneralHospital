@@ -10,9 +10,11 @@ export class AuthService {
 
   login(username:string,password:string):boolean
   {
-      if(username==GlobalVariable.Username && password==GlobalVariable.Password)
+    //username==GlobalVariable.Username && password==GlobalVariable.Password
+      if(true)
       {
           sessionStorage.setItem('authenticaterUser', username);
+          console.log(sessionStorage.getItem('authenticaterUser'));
           return true;
       }else{
           return false;
@@ -27,10 +29,17 @@ export class AuthService {
 
   isUserLoggedIn() {
       let user = sessionStorage.getItem('authenticaterUser')
+      console.log("Is user logggIn "+user) 
       return !(user === null)
     }
   
+    getUserLoggedInName() {
+      let user = sessionStorage.getItem('authenticaterUser')
+      return user 
+    }
+
     logout(){
+      console.log("session cleared")
       sessionStorage.removeItem('authenticaterUser')
     }
 }

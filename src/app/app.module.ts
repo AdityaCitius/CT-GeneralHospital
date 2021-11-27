@@ -30,6 +30,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { LoginComponent } from './login/login.component';
 import { RegistrationPatientComponent } from './registration-patient/registration-patient.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { RouteGuardService } from './Services/route-gourd.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   // {
@@ -37,11 +39,16 @@ const routes: Routes = [
   //   component: AuthComponent,
   // },
   {
-    path: 'login2',
+    path: '',
+    redirectTo: 'login',
+    pathMatch:"full"
+  },
+  {
+    path: 'login',
     component:LoginComponent
   },
   {
-    path: 'registration_patient',
+    path: 'patientRegistration',
     component:RegistrationPatientComponent
   },
   {
@@ -53,6 +60,10 @@ const routes: Routes = [
     path: 'patients',
     loadChildren: () =>
       import('./patients/patients.module').then((m) => m.PatientsModule),
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent,
   },
 ];
 
@@ -84,6 +95,7 @@ const routes: Routes = [
     MatIconModule,
     MatMenuModule,
     MatRadioModule,
+    
     RouterModule.forRoot(routes)
   ],
   providers: [],
