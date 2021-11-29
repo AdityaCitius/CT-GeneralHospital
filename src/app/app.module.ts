@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 //import { PopupComponent } from './popup/popup.component';
+
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -26,19 +27,26 @@ import { MatSortModule } from '@angular/material/sort';
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { LoginComponent } from './login/login.component';
 import { RegistrationPatientComponent } from './registration-patient/registration-patient.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthguardServiceService } from './Services/authguard-service.service';
+import { AuthenticationGuard } from './authentication.guard';
 
 const routes: Routes = [
-  // {
-  //   path: 'login',
-  //   component: AuthComponent,
-  // },
   {
-    path: 'login2',
+    path: '',redirectTo:"/login",pathMatch:'full'
+  },
+  {
+    path: 'login',
     component:LoginComponent
+  },
+  {
+    path:'home',
+    component:DashboardComponent,canActivate:[AuthenticationGuard]
   },
   {
     path: 'registration_patient',
@@ -57,7 +65,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, RegistrationPatientComponent],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, RegistrationPatientComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -77,8 +85,8 @@ const routes: Routes = [
     MatExpansionModule,
     MatTableModule,
     FormsModule,
+    MatListModule,
     ReactiveFormsModule,
-    
     MatSortModule,
     MatToolbarModule,
     MatIconModule,
@@ -86,7 +94,9 @@ const routes: Routes = [
     MatRadioModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ 
+    AuthguardServiceService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

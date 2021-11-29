@@ -4,17 +4,16 @@ import { Router } from '@angular/router';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
-  constructor(private dialog: MatDialog,private router:Router) { }
-  flag = false;
+  constructor(private dialog: MatDialog,private router:Router){ }
+
   ngOnInit(): void {
   }
-
   openPopup() {
     const popUp= this.dialog.open(PopUpComponent)
     popUp.afterClosed().subscribe(()=>{
@@ -27,5 +26,4 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login'])
 
   }
-
 }

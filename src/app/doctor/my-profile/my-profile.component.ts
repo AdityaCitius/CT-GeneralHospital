@@ -1,6 +1,9 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
+import { PopUpComponent } from 'src/app/pop-up/pop-up.component';
 
 export interface PeriodicElement {
   name: string;
@@ -46,9 +49,22 @@ export class MyProfileComponent implements AfterViewInit  {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  constructor() { }
+  constructor(private dialog: MatDialog,private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  openPopup() {
+    const popUp= this.dialog.open(PopUpComponent)
+    popUp.afterClosed().subscribe(()=>{
+    })
+  } 
+
+
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(['/login'])
+
   }
 
 }

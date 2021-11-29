@@ -1,74 +1,161 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      <a routerLink="/doctors/my-profile">Employee Details</a> /
-      <a routerLink="/doctors/registration">New Registration</a>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-card>
-      <form class="example-form">
-        <div class="row">
-          <div class="col-md-3">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Title</mat-label>
-              <input matInput placeholder="Ex. doctor" value="" />
-            </mat-form-field>
-          </div>
-          <div class="col-md-3">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>First Name</mat-label>
-              <input matInput placeholder="Ex. Rohit" value="" />
-            </mat-form-field>
-          </div>
-          <div class="col-md-3">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Last Name</mat-label>
-              <input matInput placeholder="Ex. Sharma" value="" />
-            </mat-form-field>
-          </div>
-          <div class="col-md-3">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Email Address</mat-label>
-              <input
-                type="email"
-                matInput
-                placeholder="Ex. rohitsharma@gmail.com"
-                value=""
-              />
-            </mat-form-field>
-          </div>
-        </div>
+<mat-drawer-container class="example-container" autosize style="height: 100%">
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <h1>CT General Hospital</h1>
+    <mat-accordion>
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Register Employee </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- <p><a routerLink="/doctors/my-profile"> My profile </a></p> -->
+        <p><a routerLink="/doctors/registration"> User Registration </a></p>
+        <!-- <p><a routerLink="/doctors/appoinment">Appointments</a></p> -->
+      </mat-expansion-panel>
+       <!-- <mat-expansion-panel> 
+        <mat-expansion-panel-header>
+          <mat-panel-title> Employee Details </mat-panel-title>
+        </mat-expansion-panel-header>
+         <p><a routerLink="/patients/my-profile"> My profile </a></p>
+        <p><a routerLink="/patients/visit-history">Visit History</a></p> 
+      </mat-expansion-panel> -->
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['/doctors/my-profile']">
+          <span matLine>Employee Details</span>
+        </a>
+        <a mat-list-item [routerLink]="['/doctors/my-profile']">
+          <span matLine>Patienr Registration</span>
+        </a>
+        <a mat-list-item [routerLink]="['/doctors/my-profile']">
+          <span matLine>User Management</span>
+        </a>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['/doctors/my-profile']">
+          <span matLine>Visit Patient History</span>
+        </a>
+        <a mat-list-item [routerLink]="['/doctors/my-profile']">
+          <span matLine>Scheduling</span>
+        </a>
+        <a mat-list-item [routerLink]="['/doctors/my-profile']">
+          <span matLine>Dashboard</span>
+        </a>
+      </mat-nav-list>
+      
+    </mat-accordion>
+  </mat-drawer>
+  <div
+    class="example-sidenav-content"
+    style="background: yellowgreen; height: 47px"
+  >
+    <button
+      style="padding-top: 6px"
+      type="button"
+      mat-button
+      (click)="drawer.toggle()"
+    >
+      <mat-icon>drag_indicator</mat-icon>
+    </button>
 
-        <div class="row">
-          <div class="col-md-3">
-            <mat-form-field appearance="fill">
-              <mat-label>Date Of Birth</mat-label>
-              <input matInput [matDatepicker]="picker" />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+    <button
+      style="float: right; padding-top: 6px"
+      mat-button
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon>face</mat-icon>
+      Username
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>Logout
+      </button>
+    </mat-menu>
+    <button mat-button style="float: right; padding-top: 6px">
+      <mat-icon>supervisor_account</mat-icon>About Us
+    </button>
+    <!-- <button type="button" mat-button >
+      Toggv
+    </button>  -->
+  </div>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <a routerLink="/doctors/my-profile">Employee Details</a> /
+        <a routerLink="/doctors/registration">New Registration</a>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card>
+        <form class="example-form" [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm.value)">
+          <div class="row">
+            <div class="col-md-3">
+              <mat-label>Title : </mat-label>
+              <mat-radio-group class = "tp-radio-group" formControlName="Titleval" >
+                <mat-radio-button class = "tp-radio-button"
+                   *ngFor = "let title of titles" [value] = "title">
+                   {{title}}
+                </mat-radio-button>
+             </mat-radio-group>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="Ex. Rohit" value="" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Ex. Sharma" value="" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email Address</mat-label>
+                <input
+                  type="email"
+                  matInput
+                  placeholder="Ex. rohitsharma@gmail.com"
+                  value=""
+                />
+              </mat-form-field>
+            </div>
           </div>
-          <div class="col-md-4">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Employee Id</mat-label>
-              <input type="number" matInput placeholder="Ex. 13262" value="" />
-            </mat-form-field>
-          </div>
-          <div class="col-md-3">
-            <mat-radio-group aria-label="Select an option">
-              <mat-label>Role: </mat-label><br />
-              <mat-radio-button value="physician">Physician</mat-radio-button>
-              <mat-radio-button value="nurse">Nurse</mat-radio-button>
-              <mat-radio-button value="admin">Admin</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </form>
-    </mat-card>
-    
-  </mat-card-content>
-</mat-card>
+  
+          <!-- <div class="row">
+            <div class="col-md-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Date Of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Employee Id</mat-label>
+                <input type="number" matInput placeholder="Ex. 13262" value="" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-radio-group aria-label="Select an option">
+                <mat-label>Role: </mat-label><br />
+                <mat-radio-button value="physician">Physician</mat-radio-button>
+                <mat-radio-button value="nurse">Nurse</mat-radio-button>
+                <mat-radio-button value="admin">Admin</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div> -->
+          <br>
+          <button class="btn btn-success" [disabled]="!regiForm.valid" >Login</button>
+          |
+          <!-- <button class="btn btn-primary" [disabled]="!newRegistration.valid" (click)="onSignup()">Clear</button> -->
+        </form>
+      </mat-card>
+      
+    </mat-card-content>
+  </mat-card>  
+
+</mat-drawer-container>

@@ -1,1 +1,22 @@
-<p>login works!</p>
+
+<div class="signup">
+    
+    <div class="signup-classic">
+        <h1>Login</h1>
+       <form class="form">
+        <fieldset class="username" >
+          <input type="text" placeholder="username" name="username" [(ngModel)]="username" />
+        </fieldset>
+        <!-- <fieldset class="email">
+          <input type="email" placeholder="email" />
+        </fieldset> -->
+        <fieldset class="password">
+          <input type="password"  [(ngModel)]="password" name="password" placeholder="password" />
+        </fieldset>
+        <button (click)="checklogin()" type="submit" class="btn">sign up</button>
+       </form> 
+    </div>
+    <div class="signup-connect">
+     
+    </div>
+  </div>
